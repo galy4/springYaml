@@ -16,7 +16,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static io.restassured.RestAssured.given;
 
 @Story("API")
-@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {Setup.class})
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest
