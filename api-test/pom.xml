@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.1.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<artifactId>NLMK-api-test</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>api-test</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>11</java.version>
+		<spring.version>5.1.9.RELEASE</spring.version>
+		<rest-assured.version>3.0.0</rest-assured.version>
+		<!--todo move all properties version-->
+	</properties>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-library</artifactId>
+			<version>2.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>uk.co.datumedge</groupId>
+			<artifactId>hamcrest-json</artifactId>
+			<version>0.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.skyscreamer</groupId>
+			<artifactId>jsonassert</artifactId>
+			<version>1.5.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.5</version>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${rest-assured.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>28.0-jre</version>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+            <version>2.2.1.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.10</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.9.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-junit-platform</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-junit5</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.2</version>
+				<configuration>
+				<testFailureIgnore>true</testFailureIgnore>
+				<argLine>
+					-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+				</argLine>
+				<systemPropertyVariables>
+					<allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+				</systemPropertyVariables>
+
+									<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
+				<!--                Fixme: uncomment this for [parallel testing and comment above section-->
+<!--					<configuration>-->
+<!--						<forkCount>4</forkCount>-->
+<!--						<reuseForks>false</reuseForks>-->
+<!--						<parallel>classes</parallel>-->
+<!--						<includes>-->
+<!--							<include>**/*Test.class</include>-->
+<!--						</includes>-->
+<!--						<testFailureIgnore>true</testFailureIgnore>-->
+<!--						<argLine>-->
+<!--							-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"-->
+<!--						</argLine>-->
+<!--						<systemPropertyVariables>-->
+<!--							<allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>-->
+<!--						</systemPropertyVariables>-->
+<!--					</configuration>-->
+			</plugin>
+			<plugin>
+				<groupId>io.qameta.allure</groupId>
+				<artifactId>allure-maven</artifactId>
+				<version>2.10.0</version>
+				<configuration>
+					<installDirectory>${project.build.directory}</installDirectory>
+					<allureDownloadUrl>
+						http://artifactory.russianpost.ru/artifactory/remote-repos/io/qameta/allure/allure-commandline/2.12.1/allure-commandline-2.12.1.zip
+					</allureDownloadUrl>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>
