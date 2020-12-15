@@ -1,0 +1,36 @@
+---
+spring:
+  profiles: test
+variables:
+  name: test-YAML
+  environment: testing
+  enabled: false
+  servers: www.abc.test.com, www.xyz.test.com
+  hops:
+    -
+      id: 1
+      role: aa
+    -
+      id: 2
+      role: 55
+  baseURL: https://jsonplaceholder.typicode.com
+
+---
+spring:
+  profiles: preprod
+variables:
+  name: preprod-YAML
+  environment: testing
+  enabled: false
+  servers: www.qwe.test.com, www.asd.test.com
+  hops:
+    - id: 3
+      role: vv
+    - id: 4
+      role: 00
+  baseURL: https://jsonplaceholder.typicode.com
+
+
+
+
+

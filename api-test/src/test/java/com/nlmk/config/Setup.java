@@ -9,15 +9,13 @@ import org.springframework.test.annotation.DirtiesContext;
 
 @Configuration
 @ComponentScan(lazyInit = true, basePackages = "com.nlmk")
-@EnableConfigurationProperties(value = DemoComponent.class)
-@Import({GlobalConfig.class, DemoComponent.class})
+@Import(GlobalConfig.class)
 @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
 public class Setup {
 
     @Autowired
     GlobalConfig config;
 
-    @Autowired
-    DemoComponent demoComponent;
+
 
 }

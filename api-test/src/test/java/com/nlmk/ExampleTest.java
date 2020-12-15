@@ -1,6 +1,5 @@
 package com.nlmk;
 
-import com.nlmk.config.DemoComponent;
 import com.nlmk.config.GlobalConfig;
 import com.nlmk.config.Setup;
 import io.qameta.allure.Story;
@@ -10,6 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -19,14 +19,11 @@ import static io.restassured.RestAssured.given;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {Setup.class})
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-//@SpringBootTest
+@SpringBootTest
 public class ExampleTest {
 
     @Autowired
     GlobalConfig config;
-
-    @Autowired
-    DemoComponent demoComponent;
 
     @ParameterizedTest
     @ValueSource(ints = {1,2})
